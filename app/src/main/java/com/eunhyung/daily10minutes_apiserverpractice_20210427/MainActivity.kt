@@ -2,6 +2,7 @@ package com.eunhyung.daily10minutes_apiserverpractice_20210427
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -19,7 +20,7 @@ class MainActivity : BaseActivity() {
             val inputEmail = emailEdt.text.toString()
             val inputPassword = passwordEdt.text.toString()
 
-
+            ServerUtil.postRequestLogin(inputEmail, inputPassword)
 
         }
 
