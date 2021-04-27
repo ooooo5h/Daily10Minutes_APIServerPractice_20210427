@@ -7,6 +7,7 @@ import java.io.IOException
 
 class ServerUtil {
 
+
     interface JsonResponseHandler {
         fun onResponse(jsonObj : JSONObject)
 
