@@ -2,6 +2,8 @@ package com.eunhyung.daily10minutes_apiserverpractice_20210427
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
@@ -23,6 +25,19 @@ class MainActivity : BaseActivity() {
 
             ServerUtil.postRequestLogin(inputEmail, inputPassword, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(jsonObj: JSONObject) {
+
+                    val codeNum = jsonObj.getInt("code")
+                    if (codeNum == 200) {
+                        
+                    }
+                    else {
+
+                        val message = jsonObj.getString("message")
+                        runOnUiThread {
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+                        
+                    }
 
                 }
 
