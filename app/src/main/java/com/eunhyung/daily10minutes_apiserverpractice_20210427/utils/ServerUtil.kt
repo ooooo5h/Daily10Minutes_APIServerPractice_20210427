@@ -7,12 +7,16 @@ import java.io.IOException
 
 class ServerUtil {
 
+    interface JsonResponseHandler {
+        fun onResponse(jsonObj : JSONObject)
+
+    }
 
     companion object {
 
         val HOST_URL = "http://15.164.153.174"
 
-        fun postRequestLogin(email : String, pw : String) {
+        fun postRequestLogin(email : String, pw : String, handler: JsonResponseHandler?) {
 
             val urlString = "${HOST_URL}/user"
 
@@ -39,6 +43,8 @@ class ServerUtil {
                     val jsonObj = JSONObject(bodyString)
 
                     Log.d("서버응답", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
 
                 }
 
