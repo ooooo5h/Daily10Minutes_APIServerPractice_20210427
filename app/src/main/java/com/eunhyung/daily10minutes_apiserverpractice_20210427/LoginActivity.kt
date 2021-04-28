@@ -1,5 +1,6 @@
 package com.eunhyung.daily10minutes_apiserverpractice_20210427
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,12 @@ class LoginActivity : BaseActivity() {
     }
     override fun setupEvents() {
 
+        signUpBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, SignUpActivity::class.java)
+            startActivity(myIntent)
+        }
+
         loginBtn.setOnClickListener {
 
             val inputEmail = emailEdt.text.toString()
@@ -28,6 +35,20 @@ class LoginActivity : BaseActivity() {
 
                     val codeNum = jsonObj.getInt("code")
                     if (codeNum == 200) {
+
+                        val dataObj = jsonObj.getJSONObject("data")
+                        val userObj = dataObj.getJSONObject("user")
+                        val nickname = userObj.getString("nick_name")
+                        
+                        runOnUiThread {
+                            Toast.makeText(mContext, "${nickname}님 환영합니다.", Toast.LENGTH_SHORT).show()
+
+                            val myIntent = Intent(mContext, MainActivity::class.java)
+                            startActivity(myIntent)
+
+                            finish()
+                        }
+
                         
                     }
                     else {
