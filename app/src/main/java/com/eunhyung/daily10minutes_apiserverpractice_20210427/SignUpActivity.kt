@@ -18,6 +18,31 @@ class SignUpActivity : BaseActivity() {
     }
     override fun setupEvents() {
 
+        emailCheckBtn.setOnClickListener {
+
+            val inputEmail = emailEdt.text.toString()
+
+            ServerUtil.getRequestEmailCheck(inputEmail, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(jsonObj: JSONObject) {
+                    
+                    val code = jsonObj.getInt("code")
+
+                    runOnUiThread {
+                        if (code == 200) {
+                            emailCheckResultTxt.text = "사용해도 좋은 이메일입니다."
+                        }
+                        else {
+                            emailCheckResultTxt.text = "중복된 이메일이라 사용할 수 없습니다."
+                        }
+                    }
+
+
+                }
+
+
+            })
+        }
+
         signUpBtn.setOnClickListener {
 
             val inputEmail = emailEdt.text.toString()
