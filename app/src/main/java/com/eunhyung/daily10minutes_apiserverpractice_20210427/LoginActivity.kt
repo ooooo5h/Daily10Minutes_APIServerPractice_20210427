@@ -3,6 +3,8 @@ package com.eunhyung.daily10minutes_apiserverpractice_20210427
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ServerUtil
@@ -18,6 +20,13 @@ class LoginActivity : BaseActivity() {
 
     }
     override fun setupEvents() {
+
+        autoLoginCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
+
+
+        }
+
+
 
         signUpBtn.setOnClickListener {
 
