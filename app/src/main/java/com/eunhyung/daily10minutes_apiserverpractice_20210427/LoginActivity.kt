@@ -7,6 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
+import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ContextUtil
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -23,6 +24,7 @@ class LoginActivity : BaseActivity() {
 
         autoLoginCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
 
+            ContextUtil.setAutoLogin(mContext, isChecked)
 
         }
 
@@ -81,6 +83,8 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        autoLoginCheckBox.isChecked = ContextUtil.getAutoLogin(mContext)
 
     }
 
