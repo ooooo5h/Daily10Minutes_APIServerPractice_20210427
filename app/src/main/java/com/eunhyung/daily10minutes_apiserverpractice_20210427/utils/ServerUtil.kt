@@ -1,5 +1,6 @@
 package com.eunhyung.daily10minutes_apiserverpractice_20210427.utils
 
+import android.content.Context
 import android.util.Log
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -137,6 +138,48 @@ class ServerUtil {
 
 
         }
+
+//        프로젝트 목록 받아오기
+
+        fun getRequestProjectList(context : Context, handler: JsonResponseHandler?) {
+
+            val urlBuilder = "${HOST_URL}/project".toHttpUrlOrNull()!!.newBuilder()
+
+//            urlBuilder.addEncodedQueryParameter("X-Http-Token", ContextUtil.getLoginToken(context))
+
+            val urlString = urlBuilder.build().toString()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .get()
+                .header("X-Http-Token", ContextUtil.getLoginToken(context))
+                .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyString = response.body!!.string()
+
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("서버응답", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
+
+                }
+
+
+            })
+
+
+        }
+
+
 
 
     }
