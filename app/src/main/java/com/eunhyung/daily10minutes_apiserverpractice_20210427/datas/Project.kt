@@ -7,11 +7,12 @@ class Project (
     var id : Int,
     var title : String,
     var imgUrl : String,
-    var description : String): Serializable {
+    var description : String,
+    var ongoingUserCount : Int): Serializable {
 
 //    보조생성자 추가해서 Project()만으로도 만들 수 있게 하자
 
-    constructor() : this(0, "", "", "")
+    constructor() : this(0, "", "", "", 0)
 
     companion object {
 
@@ -23,6 +24,8 @@ class Project (
             project.title = jsonObj.getString("title")
             project.imgUrl = jsonObj.getString("img_url")
             project.description = jsonObj.getString("description")
+
+            project.ongoingUserCount = jsonObj.getInt("ongoing_users_count")
 
             return project
         }
