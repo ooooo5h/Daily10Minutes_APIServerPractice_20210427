@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.adapters.ProjectAdapter
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Project
+import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ContextUtil
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
@@ -31,6 +32,14 @@ class MainActivity : BaseActivity() {
             alert.setTitle("로그아웃")
             alert.setMessage("정말 로그아웃하시겠습니까?")
             alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+
+                ContextUtil.setLoginToken(mContext, "")
+
+                val myIntent = Intent(mContext, LoginActivity::class.java)
+                startActivity(myIntent)
+
+                finish()
+
 
             })
             alert.setNegativeButton("취소", null)
