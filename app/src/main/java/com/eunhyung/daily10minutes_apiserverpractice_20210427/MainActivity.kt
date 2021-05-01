@@ -9,6 +9,7 @@ import com.eunhyung.daily10minutes_apiserverpractice_20210427.adapters.ProjectAd
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Project
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ContextUtil
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ServerUtil
+import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ViewProjectDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
@@ -25,6 +26,18 @@ class MainActivity : BaseActivity() {
         setValues()
     }
     override fun setupEvents() {
+
+        projectListView.setOnItemClickListener { parent, view, position, id ->
+
+            val clickedProject = mProject[position]
+
+            val myIntent = Intent(mContext, ViewProjectDetailActivity::class.java)
+            myIntent.putExtra("projectInfo", clickedProject)
+            startActivity(myIntent)
+
+
+
+        }
 
         logoutBtn.setOnClickListener {
 
