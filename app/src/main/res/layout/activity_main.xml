@@ -8,8 +8,15 @@
     tools:context=".MainActivity">
 
     <ListView
+        android:id="@+id/projectListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/projectListView" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그아웃" />
 
 </LinearLayout>
