@@ -12,6 +12,7 @@ import com.eunhyung.daily10minutes_apiserverpractice_20210427.R
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Project
 import kotlinx.android.synthetic.main.activity_view_project_detail.*
 import kotlinx.android.synthetic.main.project_list_item.*
+import org.json.JSONObject
 
 class ViewProjectDetailActivity : BaseActivity() {
 
@@ -24,6 +25,17 @@ class ViewProjectDetailActivity : BaseActivity() {
         setValues()
     }
     override fun setupEvents() {
+
+        applyBtn.setOnClickListener {
+
+            ServerUtil.postRequestApplyProject(mContext, mProject.id, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(jsonObj: JSONObject) {
+
+                }
+            })
+
+
+        }
 
     }
 
