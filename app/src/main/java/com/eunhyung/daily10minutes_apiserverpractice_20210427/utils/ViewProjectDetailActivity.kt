@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.service.autofill.TextValueSanitizer
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.BaseActivity
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.R
@@ -31,17 +32,37 @@ class ViewProjectDetailActivity : BaseActivity() {
             ServerUtil.postRequestApplyProject(mContext, mProject.id, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(jsonObj: JSONObject) {
 
+                    val code = jsonObj.getInt("code")
+                    if (code == 200) {
+
+                        val dataObj = jsonObj.getJSONObject("data")
+                        val projectObj = dataObj.getJSONObject("project")
+
+                        mProject = Project.getProjectFromJson(projectObj)
+
+                        runOnUiThread {
+                            refreshDataToUi()
+                        }
+                    }
+                    else {
+                        runOnUiThread {
+                            Toast.makeText(mContext, "참여 신청에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             })
-
-
         }
-
     }
 
     override fun setValues() {
 
         mProject = intent.getSerializableExtra("projectInfo") as Project
+
+        refreshDataToUi()
+
+    }
+
+    fun refreshDataToUi() {
 
         Glide.with(mContext).load(mProject.imgUrl).into(projectImg)
         titleTxt.text = mProject.title
@@ -49,6 +70,8 @@ class ViewProjectDetailActivity : BaseActivity() {
 
         userCountTxt.text = "${mProject.ongoingUserCount}명"
         proofMethodTxt.text = mProject.proofMethod
+
+        tagListLayout.removeAllViews()
 
         for (tag in mProject.tags) {
 
@@ -60,10 +83,9 @@ class ViewProjectDetailActivity : BaseActivity() {
 
             tagListLayout.addView(tagTextView)
         }
-
-
-
     }
+
+
 
 
 }
