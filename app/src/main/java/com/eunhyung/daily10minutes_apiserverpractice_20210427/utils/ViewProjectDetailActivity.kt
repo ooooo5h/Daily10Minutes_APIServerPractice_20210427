@@ -1,5 +1,6 @@
 package com.eunhyung.daily10minutes_apiserverpractice_20210427.utils
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.BaseActivity
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.R
+import com.eunhyung.daily10minutes_apiserverpractice_20210427.ViewProofByDateActivity
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Project
 import kotlinx.android.synthetic.main.activity_view_project_detail.*
 import kotlinx.android.synthetic.main.project_list_item.*
@@ -27,6 +29,12 @@ class ViewProjectDetailActivity : BaseActivity() {
         setValues()
     }
     override fun setupEvents() {
+
+        viewProofBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, ViewProofByDateActivity::class.java)
+            startActivity(myIntent)
+        }
 
         giveUpBtn.setOnClickListener {
 
