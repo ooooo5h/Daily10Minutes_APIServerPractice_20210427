@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.service.autofill.TextValueSanitizer
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -123,6 +124,18 @@ class ViewProjectDetailActivity : BaseActivity() {
 
             tagListLayout.addView(tagTextView)
         }
+
+        if (mProject.myLastStatus == "ONGOING") {
+
+            giveUpBtn.visibility = View.VISIBLE
+            applyBtn.visibility = View.GONE
+        }
+        else {
+
+            giveUpBtn.visibility = View.GONE
+            applyBtn.visibility = View.VISIBLE
+        }
+
     }
 
 

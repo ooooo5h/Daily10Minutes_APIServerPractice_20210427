@@ -9,13 +9,14 @@ class Project (
     var imgUrl : String,
     var description : String,
     var ongoingUserCount : Int,
-    var proofMethod : String): Serializable {
+    var proofMethod : String,
+    var myLastStatus : String?): Serializable {
 
     val tags = ArrayList<String>()
 
 //    보조생성자 추가해서 Project()만으로도 만들 수 있게 하자
 
-    constructor() : this(0, "", "", "", 0, "")
+    constructor() : this(0, "", "", "", 0, "", null)
 
     companion object {
 
@@ -31,6 +32,12 @@ class Project (
             project.ongoingUserCount = jsonObj.getInt("ongoing_users_count")
             project.proofMethod = jsonObj.getString("proof_method")
 
+            if (!jsonObj.isNull("my_last_status")) {
+
+                project.myLastStatus = jsonObj.getString("my_last_status")
+
+            }
+
             val tagsArr = jsonObj.getJSONArray("tags")
             for (i in 0 until tagsArr.length()) {
 
@@ -41,6 +48,8 @@ class Project (
                 project.tags.add(tagTitle)
 
             }
+
+
 
 
             return project
