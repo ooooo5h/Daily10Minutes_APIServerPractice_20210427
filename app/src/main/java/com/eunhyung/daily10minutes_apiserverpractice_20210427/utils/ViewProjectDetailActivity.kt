@@ -1,7 +1,11 @@
 package com.eunhyung.daily10minutes_apiserverpractice_20210427.utils
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.autofill.TextValueSanitizer
+import android.util.Log
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.BaseActivity
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.R
@@ -33,6 +37,17 @@ class ViewProjectDetailActivity : BaseActivity() {
 
         userCountTxt.text = "${mProject.ongoingUserCount}명"
         proofMethodTxt.text = mProject.proofMethod
+
+        for (tag in mProject.tags) {
+
+            Log.d("프로젝트 태그", tag)
+
+            val tagTextView = TextView(mContext)
+            tagTextView.text = "#${tag}"
+            tagTextView.setTextColor(Color.MAGENTA)
+
+            tagListLayout.addView(tagTextView)
+        }
 
 
 
