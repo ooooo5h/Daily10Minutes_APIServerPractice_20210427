@@ -219,6 +219,48 @@ class ServerUtil {
 
         }
 
+//        프로젝트 포기하기
+
+        fun deleteRequestGiveUpProject(context : Context, projectId : Int, handler: JsonResponseHandler?) {
+
+            val urlBuilder = "${HOST_URL}/project".toHttpUrlOrNull()!!.newBuilder()
+
+            urlBuilder.addEncodedQueryParameter("project_id", projectId.toString())
+
+            val urlString = urlBuilder.build().toString()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .delete()
+                .header("X-Http-Token", ContextUtil.getLoginToken(context))
+                .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyString = response.body!!.string()
+
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("서버응답", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
+
+                }
+
+
+            })
+
+
+        }
+
+
+
 
 
 

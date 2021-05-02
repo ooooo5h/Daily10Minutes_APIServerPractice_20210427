@@ -27,6 +27,29 @@ class ViewProjectDetailActivity : BaseActivity() {
     }
     override fun setupEvents() {
 
+        giveUpBtn.setOnClickListener {
+
+            ServerUtil.deleteRequestGiveUpProject(mContext, mProject.id, object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(jsonObj: JSONObject) {
+
+                    val code = jsonObj.getInt("code")
+                    if (code == 200) {
+
+                    }
+                    else {
+                        runOnUiThread {
+                            Toast.makeText(mContext, "포기신청에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+
+                }
+
+
+            })
+
+        }
+
         applyBtn.setOnClickListener {
 
             ServerUtil.postRequestApplyProject(mContext, mProject.id, object : ServerUtil.JsonResponseHandler {
