@@ -2,14 +2,12 @@ package com.eunhyung.daily10minutes_apiserverpractice_20210427
 
 import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.adapters.ProjectAdapter
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Project
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ContextUtil
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ServerUtil
-import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ViewProjectDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 

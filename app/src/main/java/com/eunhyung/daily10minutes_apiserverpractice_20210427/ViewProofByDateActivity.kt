@@ -5,13 +5,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
+import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Project
+import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Proof
+import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_proof_by_date.*
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ViewProofByDateActivity : BaseActivity() {
 
+    lateinit var mProject : Project
+
     val mSelectedDate = Calendar.getInstance()
+
+    val mProofList = ArrayList<Proof>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +42,8 @@ class ViewProofByDateActivity : BaseActivity() {
                     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
                     dateTxt.text = simpleDateFormat.format(mSelectedDate.time)
 
+                    getProofListByDate()
+
                 }
 
 
@@ -51,5 +62,21 @@ class ViewProofByDateActivity : BaseActivity() {
     }
     override fun setValues() {
 
+        mProject = intent.getSerializableExtra("projectInfo") as Project
+
+    }
+
+    fun getProofListByDate () {
+
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val dateString = simpleDateFormat.format(mSelectedDate.time)
+
+        ServerUtil.getRequestProofListByDate(mContext, mProject.id, dateString, object : ServerUtil.JsonResponseHandler {
+            override fun onResponse(jsonObj: JSONObject) {
+
+            }
+
+
+        })
     }
 }

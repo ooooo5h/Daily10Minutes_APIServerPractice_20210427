@@ -301,6 +301,50 @@ class ServerUtil {
 
         }
 
+//       특정 프로젝트의 인증글을 날짜별로 받아오기
+
+        fun getRequestProofListByDate(context : Context,projectId : Int, date : String, handler: JsonResponseHandler?) {
+
+            val urlBuilder = "${HOST_URL}/project".toHttpUrlOrNull()!!.newBuilder()
+
+            urlBuilder.addEncodedPathSegment(projectId.toString())
+
+            urlBuilder.addEncodedQueryParameter("proof_date", date)
+
+            val urlString = urlBuilder.build().toString()
+
+            Log.d("가공된URL", urlString)
+
+            val request = Request.Builder()
+                .url(urlString)
+                .get()
+                .header("X-Http-Token", ContextUtil.getLoginToken(context))
+                .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyString = response.body!!.string()
+
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("서버응답", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
+
+                }
+
+
+            })
+
+
+        }
+
 
 
 
