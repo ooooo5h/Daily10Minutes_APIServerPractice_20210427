@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
+import com.eunhyung.daily10minutes_apiserverpractice_20210427.adapters.ProofAdapter
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Project
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Proof
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ServerUtil
@@ -21,6 +22,8 @@ class ViewProofByDateActivity : BaseActivity() {
     val mSelectedDate = Calendar.getInstance()
 
     val mProofList = ArrayList<Proof>()
+
+    lateinit var mProofAdatper : ProofAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +67,9 @@ class ViewProofByDateActivity : BaseActivity() {
 
         mProject = intent.getSerializableExtra("projectInfo") as Project
 
+        mProofAdatper = ProofAdapter(mContext, R.layout.proof_list_item, mProofList)
+        proofListView.adapter = mProofAdatper
+
     }
 
     fun getProofListByDate () {
@@ -85,6 +91,11 @@ class ViewProofByDateActivity : BaseActivity() {
                    mProofList.add( Proof.getProofFromJson(proofsArr.getJSONObject(i)))
 
                 }
+
+                runOnUiThread {
+                    mProofAdatper.notifyDataSetChanged()
+                }
+
             }
 
 
