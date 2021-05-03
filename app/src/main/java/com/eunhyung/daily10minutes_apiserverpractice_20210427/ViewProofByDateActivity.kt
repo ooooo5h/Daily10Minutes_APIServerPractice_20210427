@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
 import kotlinx.android.synthetic.main.activity_view_proof_by_date.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ViewProofByDateActivity : BaseActivity() {
@@ -26,6 +27,11 @@ class ViewProofByDateActivity : BaseActivity() {
                 override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
 
                     Log.d("선택된 날짜", "${year}년 ${month}월 ${dayOfMonth}일" )
+
+                    mSelectedDate.set(year, month, dayOfMonth)
+
+                    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+                    dateTxt.text = simpleDateFormat.format(mSelectedDate.time)
 
                 }
 
