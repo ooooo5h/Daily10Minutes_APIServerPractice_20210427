@@ -354,13 +354,12 @@ class ServerUtil {
             val formData = FormBody.Builder()
                 .add("project_id", projectId.toString())
                 .add("content", content)
-//                .add("X-Http-Token", ContextUtil.getLoginToken(context))  : X-Http-Token이 formData로 되어있어도 그거랑 무관하게 헤더에 담는거니까 헤더에 담는건지?
                 .build()
 
             val request = Request.Builder()
                 .url(urlString)
                 .post(formData)
-                .header("X-Http-Token", ContextUtil.getLoginToken(context))  // header는 내용에 없는데도 추가하는게 맞는지..?
+                .header("X-Http-Token", ContextUtil.getLoginToken(context))
                 .build()
 
             val client = OkHttpClient()

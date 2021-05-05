@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
+import android.widget.Toast
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.adapters.ProofAdapter
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Project
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Proof
@@ -31,6 +32,16 @@ class ViewProofByDateActivity : BaseActivity() {
         setupEvents()
         setValues()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        getProofListByDate( )
+
+
+    }
+
+
     override fun setupEvents() {
 
         postProofBtn.setOnClickListener {
@@ -66,9 +77,6 @@ class ViewProofByDateActivity : BaseActivity() {
             datePickerDialog.show()
 
         }
-
-
-
     }
     override fun setValues() {
 
