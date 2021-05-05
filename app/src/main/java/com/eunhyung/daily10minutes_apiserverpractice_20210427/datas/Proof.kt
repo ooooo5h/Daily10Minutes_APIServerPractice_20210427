@@ -9,6 +9,8 @@ class Proof {
 
     val imageUrls = ArrayList<String>()
 
+    lateinit var writer : User
+
     companion object {
 
         fun getProofFromJson ( jsonObj : JSONObject) : Proof {
@@ -25,6 +27,8 @@ class Proof {
                 proof.imageUrls.add( imagesArr.getJSONObject(i).getString("img_url"))
 
             }
+
+            proof.writer = User.getUserFromJson( jsonObj.getJSONObject("user"))
 
             return proof
 
