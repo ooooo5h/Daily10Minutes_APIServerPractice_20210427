@@ -1,7 +1,6 @@
 package com.eunhyung.daily10minutes_apiserverpractice_20210427
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
@@ -23,7 +22,7 @@ class ViewProofByDateActivity : BaseActivity() {
 
     val mProofList = ArrayList<Proof>()
 
-    lateinit var mProofAdatper : ProofAdapter
+    lateinit var mProofAdapter : ProofAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,8 +66,8 @@ class ViewProofByDateActivity : BaseActivity() {
 
         mProject = intent.getSerializableExtra("projectInfo") as Project
 
-        mProofAdatper = ProofAdapter(mContext, R.layout.proof_list_item, mProofList)
-        proofListView.adapter = mProofAdatper
+        mProofAdapter = ProofAdapter(mContext, R.layout.proof_list_item, mProofList)
+        proofListView.adapter = mProofAdapter
 
     }
 
@@ -95,7 +94,7 @@ class ViewProofByDateActivity : BaseActivity() {
                 }
 
                 runOnUiThread {
-                    mProofAdatper.notifyDataSetChanged()
+                    mProofAdapter.notifyDataSetChanged()
                 }
 
             }
