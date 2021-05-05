@@ -3,12 +3,14 @@ package com.eunhyung.daily10minutes_apiserverpractice_20210427
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.adapters.ProjectAdapter
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Project
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ContextUtil
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.utils.ServerUtil
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
@@ -70,6 +72,8 @@ class MainActivity : BaseActivity() {
         projectListView.adapter = mProjectAdapter
 
         backImg.visibility = View.GONE
+
+        Log.d("기기토큰", FirebaseInstanceId.getInstance().token!!)
 
     }
 
