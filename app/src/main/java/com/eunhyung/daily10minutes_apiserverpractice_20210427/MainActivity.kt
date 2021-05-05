@@ -3,6 +3,7 @@ package com.eunhyung.daily10minutes_apiserverpractice_20210427
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.adapters.ProjectAdapter
 import com.eunhyung.daily10minutes_apiserverpractice_20210427.datas.Project
@@ -67,6 +68,8 @@ class MainActivity : BaseActivity() {
 
         mProjectAdapter = ProjectAdapter(mContext, R.layout.project_list_item, mProject)
         projectListView.adapter = mProjectAdapter
+
+        backImg.visibility = View.GONE
 
     }
 
