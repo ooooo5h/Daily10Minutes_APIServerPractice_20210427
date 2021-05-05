@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Daily10Minutes_APIServerPractice_20210427"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewProofByDateActivity"></activity>
+        <activity android:name=".PostProofActivity"></activity>
+        <activity android:name=".ViewProofByDateActivity" />
         <activity android:name=".ViewProjectDetailActivity" />
         <activity
             android:name=".SplashActivity"

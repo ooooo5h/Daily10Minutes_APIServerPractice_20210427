@@ -345,6 +345,49 @@ class ServerUtil {
 
         }
 
+//        오늘의 인증 등록
+
+        fun postRequestTodayProof(context: Context, projectId : Int, content : String, handler: JsonResponseHandler?) {
+
+            val urlString = "${HOST_URL}/project_proof"
+
+            val formData = FormBody.Builder()
+                .add("project_id", projectId.toString())
+                .add("content", content)
+//                .add("X-Http-Token", ContextUtil.getLoginToken(context))  : X-Http-Token이 formData로 되어있어도 그거랑 무관하게 헤더에 담는거니까 헤더에 담는건지?
+                .build()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .post(formData)
+                .header("X-Http-Token", ContextUtil.getLoginToken(context))  // header는 내용에 없는데도 추가하는게 맞는지..?
+                .build()
+
+            val client = OkHttpClient()
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyString = response.body!!.string()
+
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("서버응답", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
+
+                }
+
+
+            })
+
+
+        }
+
+
 
 
 

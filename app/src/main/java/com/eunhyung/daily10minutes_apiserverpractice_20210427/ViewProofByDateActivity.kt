@@ -1,6 +1,7 @@
 package com.eunhyung.daily10minutes_apiserverpractice_20210427
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
@@ -31,6 +32,13 @@ class ViewProofByDateActivity : BaseActivity() {
         setValues()
     }
     override fun setupEvents() {
+
+        postProofBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext, PostProofActivity::class.java)
+            myIntent.putExtra("project", mProject)
+            startActivity(myIntent)
+        }
 
         selectDateBtn.setOnClickListener {
 
