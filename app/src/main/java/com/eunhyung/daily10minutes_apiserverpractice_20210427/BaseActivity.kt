@@ -8,4 +8,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun setupEvents()
     abstract fun setValues()
+
+    fun setCustomActionBar() {
+
+
+    }
 }
