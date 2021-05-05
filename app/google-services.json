@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "882336333848",
+    "project_id": "daily10minutes-20210427",
+    "storage_bucket": "daily10minutes-20210427.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882336333848:android:0efe82a7c61c1ccf9b036d",
+        "android_client_info": {
+          "package_name": "com.eunhyung.daily10minutes_apiserverpractice_20210427"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882336333848-pufam4jig784m4pj03dvo2mc1ka6utva.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9pp2Jn677c4lA9Y2zIyzjFwBr_tpHuJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882336333848-pufam4jig784m4pj03dvo2mc1ka6utva.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

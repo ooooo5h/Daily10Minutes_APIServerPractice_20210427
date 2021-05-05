@@ -38,7 +38,6 @@ class ViewProofByDateActivity : BaseActivity() {
 
         getProofListByDate( )
 
-
     }
 
 
